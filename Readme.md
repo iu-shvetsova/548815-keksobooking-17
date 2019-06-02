@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Юлия Швецова](https://up.htmlacademy.ru/javascript/17/user/548815).
-* Наставник: `Неизвестно`.
+* Наставник: [Мария Филиппова](https://up.htmlacademy.ru/javascript/17/user/136678).
 
 ---
 
