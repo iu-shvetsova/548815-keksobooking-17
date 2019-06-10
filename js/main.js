@@ -11,7 +11,7 @@ var similarPinTemplate = document.querySelector('#pin').content.querySelector('.
 var pinParam = {
   WIDTH: 50,
   HEIGHT: 70
-}
+};
 
 var X_MIN = 0;
 var X_MAX = map.offsetWidth;
@@ -41,7 +41,7 @@ var generateAds = function () {
   }
 };
 
-var generatePins = function (ads) {
+var generatePins = function () {
   for (var i = 0; i < ads.length; i++) {
     pins[i] = {
       style: 'left: ' + (ads[i].location.x - pinParam.WIDTH / 2) + 'px; top: ' + (ads[i].location.y - pinParam.HEIGHT) + 'px;',
@@ -74,5 +74,5 @@ var drawPins = function () {
 map.classList.remove('map--faded');
 
 generateAds();
-generatePins(ads);
+generatePins();
 drawPins();
