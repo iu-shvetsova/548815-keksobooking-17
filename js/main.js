@@ -20,6 +20,10 @@ var Y_MAX = 630;
 
 var OFFER_TYPES = ['palace', 'flat', 'house', 'bungalo'];
 
+var getRandomNumber = function (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 var getRandomElement = function (elements) {
   return elements[Math.floor(Math.random() * elements.length)];
 };
@@ -34,8 +38,8 @@ var generateAds = function () {
         type: getRandomElement(OFFER_TYPES)
       },
       location: {
-        x: Math.floor(Math.random() * (X_MAX - X_MIN + 1)) + X_MIN,
-        y: Math.floor(Math.random() * (Y_MAX - Y_MIN + 1)) + Y_MIN
+        x: getRandomNumber(X_MIN, X_MAX),
+        y: getRandomNumber(Y_MIN, Y_MAX)
       }
     };
   }
