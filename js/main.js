@@ -2,7 +2,6 @@
 
 var NUMBER_OF_ADS = 8;
 var ads = [];
-var pins = [];
 
 var map = document.querySelector('.map');
 
@@ -22,7 +21,7 @@ var OFFER_TYPES = ['palace', 'flat', 'house', 'bungalo'];
 
 var getRandomNumber = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 var getRandomElement = function (elements) {
   return elements[Math.floor(Math.random() * elements.length)];
@@ -52,10 +51,10 @@ var drawPins = function () {
   for (var i = 0; i < ads.length; i++) {
     pin = similarPinTemplate.cloneNode(true);
 
-    pin.style.left = (ads[i].location.x - pinParam.WIDTH / 2) + 'px',
-    pin.style.top = (ads[i].location.y - pinParam.HEIGHT) + 'px',
-    pin.querySelector('img').src = ads[i].author.avatar,
-    pin.querySelector('img').alt = ads[i].offer.type
+    pin.style.left = (ads[i].location.x - pinParam.WIDTH / 2) + 'px';
+    pin.style.top = (ads[i].location.y - pinParam.HEIGHT) + 'px';
+    pin.querySelector('img').src = ads[i].author.avatar;
+    pin.querySelector('img').alt = ads[i].offer.type;
 
     fragment.appendChild(pin);
   }
