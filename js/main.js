@@ -45,37 +45,18 @@ var generateAds = function () {
   }
 };
 
-// var generatePins = function () {
-//   for (var i = 0; i < ads.length; i++) {
-//     pins[i] = {
-//       style: 'left: ' + (ads[i].location.x - pinParam.WIDTH / 2) + 'px; top: ' + (ads[i].location.y - pinParam.HEIGHT) + 'px;',
-//       avatar: ads[i].author.avatar,
-//       headline: ads[i].offer.type
-//     };
-//   }
-// };
-
-var renderPin = function (pin) {
-  var pinElement = similarPinTemplate.cloneNode(true);
-
-  pinElement.style = pin.style;
-  pinElement.querySelector('img').src = pin.avatar;
-  pinElement.querySelector('img').alt = pin.headline;
-
-  return pinElement;
-};
-
 var drawPins = function () {
   var fragment = document.createDocumentFragment();
+  var pin;
 
   for (var i = 0; i < ads.length; i++) {
-    pins[i] = {
-      style: 'left: ' + (ads[i].location.x - pinParam.WIDTH / 2) + 'px; top: ' + (ads[i].location.y - pinParam.HEIGHT) + 'px;',
-      avatar: ads[i].author.avatar,
-      headline: ads[i].offer.type
-    };
+    pin = similarPinTemplate.cloneNode(true);
 
-    fragment.appendChild(renderPin(pins[i]));
+    pin.style = 'left: ' + (ads[i].location.x - pinParam.WIDTH / 2) + 'px; top: ' + (ads[i].location.y - pinParam.HEIGHT) + 'px;',
+    pin.querySelector('img').src = ads[i].author.avatar,
+    pin.querySelector('img').alt = ads[i].offer.type
+
+    fragment.appendChild(pin);
   }
 
   map.appendChild(fragment);
@@ -84,5 +65,4 @@ var drawPins = function () {
 map.classList.remove('map--faded');
 
 generateAds();
-// generatePins();
 drawPins();
