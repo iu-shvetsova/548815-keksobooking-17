@@ -36,7 +36,7 @@ var disableForms = function () {
     filterFormFields[i].disabled = true;
   }
 
-  for (var i = 0; i < adFormFields.length; i++) {
+  for (i = 0; i < adFormFields.length; i++) {
     adFormFields[i].disabled = true;
   }
 };
@@ -46,10 +46,10 @@ var enableForms = function () {
     filterFormFields[i].disabled = false;
   }
 
-  for (var i = 0; i < adFormFields.length; i++) {
+  for (i = 0; i < adFormFields.length; i++) {
     adFormFields[i].disabled = false;
   }
-}
+};
 
 var getRandomNumber = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
