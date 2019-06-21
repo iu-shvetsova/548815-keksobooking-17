@@ -1,11 +1,21 @@
 'use strict';
 
-var NUMBER_OF_ADS = 8;
-var ads = [];
+var isActive = false;
+
+var filterForm = document.querySelector('.map__filters');
+var filterFormFields = filterForm.querySelectorAll('fieldset, select');
+
+var adForm = document.querySelector('.ad-form');
+var adFormFields = adForm.querySelectorAll('fieldset');
+var adAddress = adForm.querySelector('#address');
 
 var map = document.querySelector('.map');
+var mainPin = map.querySelector('.map__pin--main');
 
 var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
+
+var NUMBER_OF_ADS = 8;
+var ads = [];
 
 var pinParam = {
   WIDTH: 50,
@@ -18,6 +28,28 @@ var Y_MIN = 130;
 var Y_MAX = 630;
 
 var OFFER_TYPES = ['palace', 'flat', 'house', 'bungalo'];
+
+var disableForms = function () {
+  adAddress.value = mainPin.offsetLeft + ', ' + mainPin.offsetTop;
+
+  for (var i = 0; i < filterFormFields.length; i++) {
+    filterFormFields[i].disabled = true;
+  }
+
+  for (var i = 0; i < adFormFields.length; i++) {
+    adFormFields[i].disabled = true;
+  }
+};
+
+var enableForms = function () {
+  for (var i = 0; i < filterFormFields.length; i++) {
+    filterFormFields[i].disabled = false;
+  }
+
+  for (var i = 0; i < adFormFields.length; i++) {
+    adFormFields[i].disabled = false;
+  }
+}
 
 var getRandomNumber = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -62,7 +94,18 @@ var drawPins = function () {
   map.appendChild(fragment);
 };
 
-map.classList.remove('map--faded');
+mainPin.addEventListener('click', function () {
+  if (isActive === false) {
+    isActive = true;
 
-generateAds();
-drawPins();
+    enableForms();
+
+    map.classList.remove('map--faded');
+    adForm.classList.remove('ad-form--disabled');
+
+    generateAds();
+    drawPins();
+  }
+});
+
+disableForms();
