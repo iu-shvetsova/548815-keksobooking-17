@@ -30,25 +30,25 @@ var Y_MAX = 630;
 var OFFER_TYPES = ['palace', 'flat', 'house', 'bungalo'];
 
 var disableForms = function () {
-  adAddress.value = mainPin.offsetLeft + ', ' + mainPin.offsetTop;
+  adAddress.value = (mainPin.offsetLeft - mainPin.offsetWidth / 2) + ', ' + (mainPin.offsetTop - mainPin.offsetHeight / 2);
 
-  for (var i = 0; i < filterFormFields.length; i++) {
-    filterFormFields[i].disabled = true;
-  }
+  filterFormFields.forEach(function (field) {
+    field.disabled = true;
+  });
 
-  for (i = 0; i < adFormFields.length; i++) {
-    adFormFields[i].disabled = true;
-  }
+  adFormFields.forEach(function (field) {
+    field.disabled = true;
+  });
 };
 
 var enableForms = function () {
-  for (var i = 0; i < filterFormFields.length; i++) {
-    filterFormFields[i].disabled = false;
-  }
+  filterFormFields.forEach(function (field) {
+    field.disabled = false;
+  });
 
-  for (i = 0; i < adFormFields.length; i++) {
-    adFormFields[i].disabled = false;
-  }
+  adFormFields.forEach(function (field) {
+    field.disabled = false;
+  });
 };
 
 var getRandomNumber = function (min, max) {
@@ -95,7 +95,7 @@ var drawPins = function () {
 };
 
 mainPin.addEventListener('click', function () {
-  if (isActive === false) {
+  if (!isActive) {
     isActive = true;
 
     enableForms();
