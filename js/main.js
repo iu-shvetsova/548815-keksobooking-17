@@ -24,7 +24,7 @@ var pinParam = {
 
 var mainPinParam = {
   WIDTH: 65,
-  HEIGHT: 70
+  HEIGHT: 72
 };
 
 var X_MIN = 0;
