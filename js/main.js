@@ -22,6 +22,11 @@ var pinParam = {
   HEIGHT: 70
 };
 
+var mainPinParam = {
+  WIDTH: 65,
+  HEIGHT: 70
+};
+
 var X_MIN = 0;
 var X_MAX = map.offsetWidth;
 var Y_MIN = 130;
@@ -30,7 +35,7 @@ var Y_MAX = 630;
 var OFFER_TYPES = ['palace', 'flat', 'house', 'bungalo'];
 
 var disableForms = function () {
-  adAddress.value = (mainPin.offsetLeft - mainPin.offsetWidth / 2) + ', ' + (mainPin.offsetTop - mainPin.offsetHeight / 2);
+  adAddress.value = Math.round((mainPin.offsetLeft + mainPin.offsetWidth / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPin.offsetHeight / 2));
 
   filterFormFields.forEach(function (field) {
     field.disabled = true;
@@ -106,6 +111,10 @@ mainPin.addEventListener('click', function () {
     generateAds();
     drawPins();
   }
+});
+
+mainPin.addEventListener('mouseup', function () {
+  adAddress.value = Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPinParam.HEIGHT));
 });
 
 disableForms();
