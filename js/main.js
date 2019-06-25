@@ -7,7 +7,11 @@ var filterFormFields = filterForm.querySelectorAll('fieldset, select');
 
 var adForm = document.querySelector('.ad-form');
 var adFormFields = adForm.querySelectorAll('fieldset');
-var adAddress = adForm.querySelector('#address');
+var adAddressField = adForm.querySelector('#address');
+var adTypeField = adForm.querySelector('#type');
+var adPriceField = adForm.querySelector('#price');
+var adTimeInField = adForm.querySelector('#timein');
+var adTimeOutField = adForm.querySelector('#timeout');
 
 var map = document.querySelector('.map');
 var mainPin = map.querySelector('.map__pin--main');
@@ -35,7 +39,11 @@ var Y_MAX = 630;
 var OFFER_TYPES = ['palace', 'flat', 'house', 'bungalo'];
 
 var disableForms = function () {
-  adAddress.value = Math.round((mainPin.offsetLeft + mainPin.offsetWidth / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPin.offsetHeight / 2));
+  var minPrice = setPrice(adTypeField.value);
+  adPriceField.placeholder = minPrice;
+  adPriceField.min = minPrice;
+
+  adAddressField.value = Math.round((mainPin.offsetLeft + mainPin.offsetWidth / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPin.offsetHeight / 2));
 
   filterFormFields.forEach(function (field) {
     field.disabled = true;
@@ -99,6 +107,20 @@ var drawPins = function () {
   map.appendChild(fragment);
 };
 
+var setPrice = function (type) {
+  switch (type) {
+    case 'bungalo':
+      return 0;
+    case 'flat':
+      return 1000;
+    case 'house':
+      return 5000;
+    case 'palace':
+      return 10000;
+  }
+  return 0;
+};
+
 mainPin.addEventListener('click', function () {
   if (!isActive) {
     isActive = true;
@@ -114,7 +136,23 @@ mainPin.addEventListener('click', function () {
 });
 
 mainPin.addEventListener('mouseup', function () {
-  adAddress.value = Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPinParam.HEIGHT));
+  adAddressField.value = Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPinParam.HEIGHT));
+});
+
+adTypeField.addEventListener('change', function () {
+  var minPrice = setPrice(adTypeField.value);
+  adPriceField.placeholder = minPrice;
+  adPriceField.min = minPrice;
+});
+
+adTimeInField.addEventListener('change', function () {
+  var time = adTimeInField.value;
+  adTimeOutField.value = time;
+});
+
+adTimeOutField.addEventListener('change', function () {
+  var time = adTimeOutField.value;
+  adTimeInField.value = time;
 });
 
 disableForms();
