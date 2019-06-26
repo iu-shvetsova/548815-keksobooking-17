@@ -160,7 +160,7 @@ mainPin.addEventListener('mousedown', function (evt) {
     adAddressField.value = Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPinParam.HEIGHT));
   };
 
-  var onMouseUp = function (upEvt) {
+  var onMouseUp = function () {
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
   };
