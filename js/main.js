@@ -153,7 +153,7 @@ mainPin.addEventListener('mousedown', function (evt) {
     if ((mainPin.offsetLeft - shift.x + mainPinParam.WIDTH / 2 >= X_MIN) && (mainPin.offsetLeft - shift.x + mainPinParam.WIDTH / 2 <= X_MAX)) {
       mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
     }
-    if ((mainPin.offsetTop - shift.y >= Y_MIN) && (mainPin.offsetTop - shift.y + mainPinParam.HEIGHT <= Y_MAX)) {
+    if ((mainPin.offsetTop - shift.y >= Y_MIN - mainPinParam.HEIGHT) && (mainPin.offsetTop - shift.y + mainPinParam.HEIGHT <= Y_MAX)) {
       mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
     }
 
