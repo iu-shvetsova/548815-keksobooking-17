@@ -160,7 +160,7 @@ mainPin.addEventListener('mousedown', function (evt) {
       mainPin.style.top = pinTopY + 'px';
     }
 
-    adAddressField.value = Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPinParam.HEIGHT));
+    // adAddressField.value = Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPinParam.HEIGHT));
   };
 
   var onMouseUp = function () {
