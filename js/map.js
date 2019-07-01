@@ -55,6 +55,8 @@
     };
 
     var onMouseUp = function () {
+      window.form.setAddress(Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)), Math.round((mainPin.offsetTop + mainPinParam.HEIGHT)));
+
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };
