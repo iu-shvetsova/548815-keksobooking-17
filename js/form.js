@@ -31,19 +31,6 @@
     });
   };
 
-  window.enableForms = function () {
-    map.classList.remove('map--faded');
-    adForm.classList.remove('ad-form--disabled');
-
-    filterFormFields.forEach(function (field) {
-      field.disabled = false;
-    });
-
-    adFormFields.forEach(function (field) {
-      field.disabled = false;
-    });
-  };
-
   var setPrice = function (type) {
     switch (type) {
       case 'bungalo':
@@ -76,6 +63,19 @@
 
   window.setAddress = function (x, y) {
     adAddressField.value = x + ', ' + y;
+  };
+
+  window.enableForms = function () {
+    map.classList.remove('map--faded');
+    adForm.classList.remove('ad-form--disabled');
+
+    filterFormFields.forEach(function (field) {
+      field.disabled = false;
+    });
+
+    adFormFields.forEach(function (field) {
+      field.disabled = false;
+    });
   };
 
   disableForms();
