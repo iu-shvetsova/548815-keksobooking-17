@@ -61,22 +61,23 @@
     adTimeInField.value = time;
   });
 
-  window.setAddress = function (x, y) {
-    adAddressField.value = x + ', ' + y;
-  };
+  window.form = {
+    setAddress: function (x, y) {
+      adAddressField.value = x + ', ' + y;
+    },
+    enableForms: function () {
+      map.classList.remove('map--faded');
+      adForm.classList.remove('ad-form--disabled');
 
-  window.enableForms = function () {
-    map.classList.remove('map--faded');
-    adForm.classList.remove('ad-form--disabled');
+      filterFormFields.forEach(function (field) {
+        field.disabled = false;
+      });
 
-    filterFormFields.forEach(function (field) {
-      field.disabled = false;
-    });
-
-    adFormFields.forEach(function (field) {
-      field.disabled = false;
-    });
-  };
+      adFormFields.forEach(function (field) {
+        field.disabled = false;
+      });
+    }
+  }
 
   disableForms();
 })();

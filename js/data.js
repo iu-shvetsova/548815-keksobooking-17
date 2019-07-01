@@ -1,10 +1,8 @@
 'use strict';
 
 (function () {
-  var map = document.querySelector('.map');
-
   var X_MIN = 0;
-  var X_MAX = map.offsetWidth;
+  var X_MAX = 1200;
   var Y_MIN = 130;
   var Y_MAX = 630;
 

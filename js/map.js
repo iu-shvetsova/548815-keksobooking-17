@@ -1,26 +1,26 @@
 'use strict';
 
 (function () {
-  var isActive = false;
-
-  var map = document.querySelector('.map');
-  var mainPin = map.querySelector('.map__pin--main');
+  var X_MIN = 0;
+  var X_MAX = 1200;
+  var Y_MIN = 130;
+  var Y_MAX = 630;
 
   var mainPinParam = {
     WIDTH: 65,
     HEIGHT: 87
   };
 
-  var X_MIN = 0;
-  var X_MAX = map.offsetWidth;
-  var Y_MIN = 130;
-  var Y_MAX = 630;
+  var map = document.querySelector('.map');
+  var mainPin = map.querySelector('.map__pin--main');
+
+  var isActive = false;
 
   mainPin.addEventListener('mousedown', function (evt) {
     if (!isActive) {
       isActive = true;
 
-      window.enableForms();
+      window.form.enableForms();
 
       window.drawPins(window.generateAds());
     }
@@ -51,7 +51,7 @@
         mainPin.style.top = pinTopY + 'px';
       }
 
-      window.setAddress(Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)), Math.round((mainPin.offsetTop + mainPinParam.HEIGHT)));
+      window.form.setAddress(Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)), Math.round((mainPin.offsetTop + mainPinParam.HEIGHT)));
     };
 
     var onMouseUp = function () {
