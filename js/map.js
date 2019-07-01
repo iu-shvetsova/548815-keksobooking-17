@@ -22,8 +22,7 @@
 
       window.enableForms();
 
-      window.generateAds();
-      window.drawPins();
+      window.drawPins(window.generateAds());
     }
 
     var startCoords = {
