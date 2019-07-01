@@ -77,7 +77,7 @@
         field.disabled = false;
       });
     }
-  }
+  };
 
   disableForms();
 })();
