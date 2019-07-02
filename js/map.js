@@ -32,7 +32,7 @@
 
   var successHandler = function (ads) {
     window.drawPins(ads);
-  }
+  };
 
   mainPin.addEventListener('mousedown', function (evt) {
     var startCoords = {
