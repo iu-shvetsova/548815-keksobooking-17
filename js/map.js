@@ -11,10 +11,28 @@
     HEIGHT: 87
   };
 
+  var mainArea = document.querySelector('main');
+
   var map = document.querySelector('.map');
   var mainPin = map.querySelector('.map__pin--main');
 
+  var errorTemplate = document.querySelector('#error').content.querySelector('.error');
+
   var isActive = false;
+
+  var errorHandler = function (errorMessage) {
+    var fragment = document.createDocumentFragment();
+    var errorPopup = errorTemplate.cloneNode(true);
+
+    errorPopup.querySelector('.error__message').textContent = errorMessage;
+
+    fragment.appendChild(errorPopup);
+    mainArea.appendChild(fragment);
+  };
+
+  var successHandler = function (ads) {
+    window.drawPins(ads);
+  }
 
   mainPin.addEventListener('mousedown', function (evt) {
     var startCoords = {
@@ -53,8 +71,7 @@
         window.form.enableForms();
         window.form.setAddress(Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)), Math.round((mainPin.offsetTop + mainPinParam.HEIGHT)));
 
-        window.drawPins(window.generateAds());
-
+        window.load(successHandler, errorHandler);
       }
 
       document.removeEventListener('mousemove', onMouseMove);
