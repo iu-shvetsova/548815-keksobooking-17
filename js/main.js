@@ -150,14 +150,17 @@ mainPin.addEventListener('mousedown', function (evt) {
       y: moveEvt.clientY
     };
 
-    if ((mainPin.offsetLeft - shift.x + mainPinParam.WIDTH / 2 >= X_MIN) && (mainPin.offsetLeft - shift.x + mainPinParam.WIDTH / 2 <= X_MAX)) {
+    var pinCenterX = mainPin.offsetLeft - shift.x + mainPinParam.WIDTH / 2;
+    var pinTopY = mainPin.offsetTop - shift.y;
+
+    if ((pinCenterX >= X_MIN) && (pinCenterX <= X_MAX)) {
       mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
     }
-    if ((mainPin.offsetTop - shift.y >= Y_MIN - mainPinParam.HEIGHT) && (mainPin.offsetTop - shift.y + mainPinParam.HEIGHT <= Y_MAX)) {
-      mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
+    if ((pinTopY >= Y_MIN - mainPinParam.HEIGHT) && (pinTopY + mainPinParam.HEIGHT <= Y_MAX)) {
+      mainPin.style.top = pinTopY + 'px';
     }
 
-    adAddressField.value = Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPinParam.HEIGHT));
+    // adAddressField.value = Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPinParam.HEIGHT));
   };
 
   var onMouseUp = function () {
