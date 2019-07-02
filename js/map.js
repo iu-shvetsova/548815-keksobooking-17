@@ -17,14 +17,6 @@
   var isActive = false;
 
   mainPin.addEventListener('mousedown', function (evt) {
-    if (!isActive) {
-      isActive = true;
-
-      window.form.enableForms();
-
-      window.drawPins(window.generateAds());
-    }
-
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY
@@ -55,7 +47,15 @@
     };
 
     var onMouseUp = function () {
-      window.form.setAddress(Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)), Math.round((mainPin.offsetTop + mainPinParam.HEIGHT)));
+      if (!isActive) {
+        isActive = true;
+
+        window.form.enableForms();
+        window.form.setAddress(Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)), Math.round((mainPin.offsetTop + mainPinParam.HEIGHT)));
+
+        window.drawPins(window.generateAds());
+
+      }
 
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
