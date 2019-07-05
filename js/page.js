@@ -21,5 +21,5 @@
     deactivate: function () {
       isActive = false;
     }
-  }
+  };
 })();
