@@ -1,39 +1,41 @@
 'use strict';
 
 (function () {
-  var X_MIN = 0;
-  var X_MAX = 1200;
-  var Y_MIN = 130;
-  var Y_MAX = 630;
+  var URL = 'https://js.dump.academy/keksobooking/data';
 
-  var NUMBER_OF_ADS = 8;
+  var SUCCESS_STATUS = 200;
+  var TIMEOUT = 10000;
 
-  var OFFER_TYPES = ['palace', 'flat', 'house', 'bungalo'];
+  var createRequest = function (onLoad, onError) {
+    var xhr = new XMLHttpRequest();
 
-  var getRandomNumber = function (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    xhr.responseType = 'json';
+
+    xhr.addEventListener('load', function () {
+      if (xhr.status === SUCCESS_STATUS) {
+        onLoad(xhr.response);
+      } else {
+        onError('Cтатус ответа: ' + xhr.status + ' ' + xhr.statusText);
+      }
+    });
+
+    xhr.addEventListener('error', function () {
+      onError('Произошла ошибка соединения');
+    });
+
+    xhr.addEventListener('timeout', function () {
+      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+    });
+
+    xhr.timeout = TIMEOUT;
+
+    return xhr;
   };
 
-  var getRandomElement = function (elements) {
-    return elements[Math.floor(Math.random() * elements.length)];
-  };
+  window.load = function (onLoad, onError) {
+    var xhr = createRequest(onLoad, onError);
 
-  window.generateAds = function () {
-    var ads = [];
-    for (var i = 0; i < NUMBER_OF_ADS; i++) {
-      ads[i] = {
-        author: {
-          avatar: 'img/avatars/user0' + (i + 1) + '.png'
-        },
-        offer: {
-          type: getRandomElement(OFFER_TYPES)
-        },
-        location: {
-          x: getRandomNumber(X_MIN, X_MAX),
-          y: getRandomNumber(Y_MIN, Y_MAX)
-        }
-      };
-    }
-    return ads;
+    xhr.open('GET', URL);
+    xhr.send();
   };
 })();

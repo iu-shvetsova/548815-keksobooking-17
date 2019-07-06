@@ -14,17 +14,7 @@
   var map = document.querySelector('.map');
   var mainPin = map.querySelector('.map__pin--main');
 
-  var isActive = false;
-
   mainPin.addEventListener('mousedown', function (evt) {
-    if (!isActive) {
-      isActive = true;
-
-      window.form.enableForms();
-
-      window.drawPins(window.generateAds());
-    }
-
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY
@@ -55,6 +45,8 @@
     };
 
     var onMouseUp = function () {
+      window.page.activate();
+
       window.form.setAddress(Math.round((mainPin.offsetLeft + mainPinParam.WIDTH / 2)), Math.round((mainPin.offsetTop + mainPinParam.HEIGHT)));
 
       document.removeEventListener('mousemove', onMouseMove);
