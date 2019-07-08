@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var NUMBER_OF_PINS = 5;
+
   var pinParam = {
     WIDTH: 50,
     HEIGHT: 70
@@ -14,7 +16,7 @@
     var fragment = document.createDocumentFragment();
     var pin;
 
-    for (var i = 0; i < ads.length; i++) {
+    for (var i = 0; i < NUMBER_OF_PINS; i++) {
       pin = similarPinTemplate.cloneNode(true);
 
       pin.style.left = (ads[i].location.x - pinParam.WIDTH / 2) + 'px';
