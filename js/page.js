@@ -5,7 +5,6 @@
 
   var successHandler = function (ads) {
     window.filters.init(ads);
-    window.pin.drawPins(ads);
   };
 
   window.page = {
