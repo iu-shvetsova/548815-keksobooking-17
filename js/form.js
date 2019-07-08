@@ -3,7 +3,7 @@
 (function () {
   var filterForm = document.querySelector('.map__filters');
   var filterFormFields = filterForm.querySelectorAll('fieldset, select');
-  var filterType = filterForm.querySelector('.map__filter[name=housing-type]');
+  // var filterByType = document.querySelector('#housing-type');
 
   var adForm = document.querySelector('.ad-form');
   var adFormFields = adForm.querySelectorAll('fieldset');
@@ -46,18 +46,19 @@
     return 0;
   };
 
-  filterType.addEventListener('change', function () {
-    var filteredAds;
-    if (filterType.value === 'Любой тип жилья') {
-      filteredAds = window.allAds;
-    } else {
-      filteredAds = window.allAds.filter(function (ad) {
-        return ad.offer.type === filterType.value;
-      });
-    }
-    // console.log(filteredAds);
-    window.drawPins(filteredAds);
-  });
+  // filterByType.addEventListener('change', function () {
+  //   var filteredAds;
+  //   if (filterByType.value === 'any') {
+  //     filteredAds = window.allAds;
+  //   } else {
+  //     filteredAds = window.allAds.filter(function (ad) {
+  //       return ad.offer.type === filterByType.value;
+  //     });
+  //   }
+  //   // console.log(filteredAds);
+  //   window.pin.removePins();
+  //   window.pin.drawPins(filteredAds);
+  // });
 
   adTypeField.addEventListener('change', function () {
     var minPrice = setPrice(adTypeField.value);
