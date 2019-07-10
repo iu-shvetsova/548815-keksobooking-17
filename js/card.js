@@ -37,7 +37,7 @@
       currentPhoto.src = photo;
       fragment.appendChild(currentPhoto);
     });
-    // photosSection.removeChild(photosSection.querySelectorAll('.popup__photo')[0]);
+    // section.removeChild(photosSection.querySelectorAll('.popup__photo')[0]);
     section.appendChild(fragment);
   };
 
@@ -60,5 +60,5 @@
     fragment.appendChild(card);
 
     return fragment;
-  }
+  };
 })();

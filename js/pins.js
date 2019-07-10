@@ -29,7 +29,7 @@
       pin.querySelector('img').alt = ads[i].offer.type;
 
       pin.addEventListener('click', function () {
-        map.appendChild(renderCard(ads[0]));
+        map.appendChild(window.renderCard(ads[0]));
       });
 
       fragment.appendChild(pin);
