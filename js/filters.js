@@ -14,15 +14,15 @@
         return ad.offer.type === filterByType.value;
       });
     }
-    window.pin.removePins();
-    window.pin.drawPins(filteredAds);
+    window.pins.draw(filteredAds);
   };
-
-  filterByType.addEventListener('change', onTypeChange);
 
   window.filters = {
     init: function (ads) {
       initialAds = ads;
+      window.pins.draw(initialAds);
+
+      filterByType.addEventListener('change', onTypeChange);
     }
   };
 })();

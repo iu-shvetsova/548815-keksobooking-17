@@ -3,7 +3,6 @@
 (function () {
   var filterForm = document.querySelector('.map__filters');
   var filterFormFields = filterForm.querySelectorAll('fieldset, select');
-  // var filterByType = document.querySelector('#housing-type');
 
   var adForm = document.querySelector('.ad-form');
   var adFormFields = adForm.querySelectorAll('fieldset');
@@ -45,20 +44,6 @@
     }
     return 0;
   };
-
-  // filterByType.addEventListener('change', function () {
-  //   var filteredAds;
-  //   if (filterByType.value === 'any') {
-  //     filteredAds = window.allAds;
-  //   } else {
-  //     filteredAds = window.allAds.filter(function (ad) {
-  //       return ad.offer.type === filterByType.value;
-  //     });
-  //   }
-  //   // console.log(filteredAds);
-  //   window.pin.removePins();
-  //   window.pin.drawPins(filteredAds);
-  // });
 
   adTypeField.addEventListener('change', function () {
     var minPrice = setPrice(adTypeField.value);
