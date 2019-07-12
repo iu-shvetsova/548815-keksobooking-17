@@ -31,13 +31,14 @@
   };
 
   var setPhotos = function (section, item, photos) {
+    section.removeChild(item);
+
     var fragment = document.createDocumentFragment();
     photos.forEach(function (photo) {
       var currentPhoto = item.cloneNode(true);
       currentPhoto.src = photo;
       fragment.appendChild(currentPhoto);
     });
-    // section.removeChild(photosSection.querySelectorAll('.popup__photo')[0]);
     section.appendChild(fragment);
   };
 
