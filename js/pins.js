@@ -8,9 +8,13 @@
     HEIGHT: 70
   };
 
-  var map = document.querySelector('.map');
+  var map = document.querySelector('.map__pins');
 
   var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
+
+  var onPinClick = function (ad) {
+    window.showCard(ad);
+  };
 
   var renderPin = function (ad) {
     var pin = similarPinTemplate.cloneNode(true);
@@ -22,13 +26,7 @@
     pin.querySelector('img').alt = ad.offer.type;
 
     pin.addEventListener('click', function () {
-      var card = window.card.render(ad);
-      if (!window.card.isDrawn()) {
-        map.appendChild(card);
-      } else {
-        window.card.remove();
-        map.appendChild(card);
-      }
+      onPinClick(ad);
     });
 
     return pin;

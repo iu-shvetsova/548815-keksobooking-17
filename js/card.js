@@ -44,6 +44,10 @@
     section.appendChild(fragment);
   };
 
+  var onCardClose = function () {
+    card.remove();
+  };
+
   window.card = {
     render: function (ad) {
       var fragment = document.createDocumentFragment();
@@ -61,9 +65,8 @@
       setFeatures(card.querySelector('.popup__features'), ad.offer.features);
       setPhotos(card.querySelector('.popup__photos'), card.querySelector('.popup__photos .popup__photo'), ad.offer.photos);
 
-      card.querySelector('.popup__close').addEventListener('click', function () {
-        card.remove();
-      });
+      card.querySelector('.popup__close').addEventListener('click', onCardClose);
+
       document.addEventListener('keydown', function (evt) {
         if (evt.keyCode === ESC_KEYCODE) {
           card.remove();
@@ -75,10 +78,10 @@
       return fragment;
     },
     remove: function () {
-      document.querySelector('.popup').remove();
-    },
-    isDrawn: function () {
-      return document.querySelector('.popup') ? true : false;
+      var card = document.querySelector('.map__card');
+      if (card) {
+        card.remove();
+      }
     }
   };
 })();
