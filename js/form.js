@@ -11,6 +11,10 @@
   var adPriceField = adForm.querySelector('#price');
   var adTimeInField = adForm.querySelector('#timein');
   var adTimeOutField = adForm.querySelector('#timeout');
+  var adRoomsField = adForm.querySelector('#room_number');
+  var adCapacityField = adForm.querySelector('#capacity');
+
+  var submitButton = adForm.querySelector('.ad-form__submit');
 
   var map = document.querySelector('.map');
   var mainPin = map.querySelector('.map__pin--main');
@@ -45,6 +49,19 @@
     return 0;
   };
 
+  var isCapacityValid = function (rooms, capacity) {
+    if ((rooms === 1) && (capacity === 1)) {
+      return true;
+    }
+    if ((rooms === 2) && ((capacity === 1) || (capacity === 2))) {
+      return true;
+    }
+    if ((rooms === 3) && ((capacity === 1) || (capacity === 2) || (capacity === 3))) {
+      return true;
+    }
+    return false;
+  };
+
   adTypeField.addEventListener('change', function () {
     var minPrice = setPrice(adTypeField.value);
     adPriceField.placeholder = minPrice;
@@ -59,6 +76,14 @@
   adTimeOutField.addEventListener('change', function () {
     var time = adTimeOutField.value;
     adTimeInField.value = time;
+  });
+
+  submitButton.addEventListener('click', function () {
+    if (!isCapacityValid(adRoomsField.value, adCapacityField.value)) {
+      adCapacityField.setCustomValidity('Число гостей не должно превышать число комнат.');
+    } else {
+      adCapacityField.setCustomValidity();
+    }
   });
 
   window.form = {

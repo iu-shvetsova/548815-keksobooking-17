@@ -45,7 +45,7 @@
   };
 
   var onCardClose = function () {
-    card.remove();
+    window.card.remove();
   };
 
   window.card = {

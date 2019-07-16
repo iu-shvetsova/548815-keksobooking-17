@@ -61,5 +61,5 @@
     var card = window.card.render(ad);
     window.card.remove();
     map.appendChild(card);
-  }
+  };
 })();
