@@ -19,6 +19,19 @@
   var map = document.querySelector('.map');
   var mainPin = map.querySelector('.map__pin--main');
 
+  var roomsToGuests = {
+    '1': ['1'],
+    '2': ['1', '2'],
+    '3': ['1', '2', '3'],
+    '100': ['0']
+  };
+
+  var isCapacityValid = function (rooms, capacity) {
+    return roomsToGuests[rooms].some(function (value) {
+      return value === capacity;
+    });
+  };
+
   var disableForms = function () {
     var minPrice = setPrice(adTypeField.value);
     adPriceField.placeholder = minPrice;
@@ -49,19 +62,6 @@
     return 0;
   };
 
-  var isCapacityValid = function (rooms, capacity) {
-    if ((rooms === 1) && (capacity === 1)) {
-      return true;
-    }
-    if ((rooms === 2) && ((capacity === 1) || (capacity === 2))) {
-      return true;
-    }
-    if ((rooms === 3) && ((capacity === 1) || (capacity === 2) || (capacity === 3))) {
-      return true;
-    }
-    return false;
-  };
-
   adTypeField.addEventListener('change', function () {
     var minPrice = setPrice(adTypeField.value);
     adPriceField.placeholder = minPrice;
@@ -80,9 +80,9 @@
 
   submitButton.addEventListener('click', function () {
     if (!isCapacityValid(adRoomsField.value, adCapacityField.value)) {
-      adCapacityField.setCustomValidity('Число гостей не должно превышать число комнат.');
+      adCapacityField.setCustomValidity('Выбранное число гостей недопустимо.');
     } else {
-      adCapacityField.setCustomValidity();
+      adCapacityField.setCustomValidity('');
     }
   });
 
