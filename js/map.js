@@ -56,4 +56,10 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  window.showCard = function (ad) {
+    var card = window.card.render(ad);
+    window.card.remove();
+    map.appendChild(card);
+  };
 })();
