@@ -16,7 +16,7 @@
       isActive = true;
 
       window.form.enableForms();
-      window.load(successHandler, window.errorHandler);
+      window.data.load(successHandler, window.modal.errorHandler);
     },
     deactivate: function () {
       isActive = false;

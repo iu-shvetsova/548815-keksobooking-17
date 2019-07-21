@@ -86,6 +86,12 @@
     }
   });
 
+  adForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    var formData = new FormData();
+    window.data.save(formData, window.modal.successHandler, window.modal.errorHandler);
+  });
+
   window.form = {
     setAddress: function (x, y) {
       adAddressField.value = x + ', ' + y;
