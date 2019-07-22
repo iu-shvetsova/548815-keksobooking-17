@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+
   var filterForm = document.querySelector('.map__filters');
   var filterFormFields = filterForm.querySelectorAll('fieldset, select');
 
@@ -13,6 +15,8 @@
   var adTimeOutField = adForm.querySelector('#timeout');
   var adRoomsField = adForm.querySelector('#room_number');
   var adCapacityField = adForm.querySelector('#capacity');
+  var adPhotosChooser = adForm.querySelector('.ad-form__upload input[type=file]');
+  var adPhotoPreviewsList = adForm.querySelector('.ad-form__photo-container');
 
   var submitButton = adForm.querySelector('.ad-form__submit');
 
@@ -62,6 +66,22 @@
     return 0;
   };
 
+  var generatePreview = function(file) {
+    var reader = new FileReader();
+
+    var preview = document.createElement('div');
+    preview.classList.add('ad-form__photo');
+    preview.style.backgroundSize = 'cover';
+
+    reader.addEventListener('load', function () {
+      preview.style.backgroundImage = 'url(' + reader.result + ')';
+    });
+
+    reader.readAsDataURL(file);
+
+    return preview;
+  };
+
   adTypeField.addEventListener('change', function () {
     var minPrice = setPrice(adTypeField.value);
     adPriceField.placeholder = minPrice;
@@ -76,6 +96,31 @@
   adTimeOutField.addEventListener('change', function () {
     var time = adTimeOutField.value;
     adTimeInField.value = time;
+  });
+
+  adPhotosChooser.addEventListener('change', function () {
+    var files = adPhotosChooser.files;
+    var filesNames = [];
+
+    var fragment = document.createDocumentFragment();
+
+    for (var i = 0; i < files.length; i++) {
+      filesNames[i] = files[i].name.toLowerCase();
+
+      var matches = FILE_TYPES.some(function (it) {
+        return filesNames[i].endsWith(it);
+      });
+
+      if (matches) {
+        if ((i === 0) && (filesNames.length > 0)) {
+          adPhotoPreviewsList.querySelector('.ad-form__photo').remove();
+        }
+
+        fragment.appendChild(generatePreview(files[i]));
+      }
+    }
+
+    adPhotoPreviewsList.appendChild(fragment);
   });
 
   submitButton.addEventListener('click', function () {
