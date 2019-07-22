@@ -86,7 +86,7 @@
 
   };
 
-  var onChange = function () {
+  var updatePins = function () {
     var filteredAds = initialAds;
 
     filteredAds = getAdsByType(filteredAds);
@@ -97,6 +97,10 @@
 
     window.pins.draw(filteredAds);
   };
+
+  var onChange = window.util.debounce(function () {
+    updatePins();
+  });
 
   window.filters = {
     init: function (ads) {
