@@ -66,7 +66,7 @@
     return 0;
   };
 
-  var generatePreview = function(file) {
+  var generatePreview = function (file) {
     var reader = new FileReader();
 
     var preview = document.createElement('div');

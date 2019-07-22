@@ -19,7 +19,7 @@
     document.addEventListener('keydown', onPopupEscPress);
 
     return popup;
-  }
+  };
 
   window.modal = {
     errorHandler: function (errorMessage) {
@@ -36,8 +36,8 @@
 
       var successPopup = drawPopup(successTemplate, mainSection);
 
-      fragment.appendChild(errorPopup);
+      fragment.appendChild(successPopup);
       mainSection.appendChild(fragment);
     }
-  }
+  };
 })();

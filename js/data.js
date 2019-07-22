@@ -46,5 +46,5 @@
       xhr.open('POST', SAVE_URL);
       xhr.send(data);
     }
-  }
+  };
 })();
