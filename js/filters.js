@@ -99,6 +99,7 @@
     filteredAds = getAdsByPrice(filteredAds);
     filteredAds = getAdsByFeatures(filteredAds);
 
+    window.card.remove();
     window.pins.draw(filteredAds);
   };
 
