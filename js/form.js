@@ -71,6 +71,7 @@
 
     var preview = document.createElement('div');
     preview.classList.add('ad-form__photo');
+    preview.classList.add('ad-form__photo--added');
     preview.style.backgroundSize = 'cover';
 
     reader.addEventListener('load', function () {
@@ -99,6 +100,10 @@
   });
 
   adPhotosChooser.addEventListener('change', function () {
+    if (!adPhotoPreviewsList.querySelector('.ad-form__photo--added')) {
+      adPhotoPreviewsList.querySelector('.ad-form__photo').remove();
+    }
+
     var files = adPhotosChooser.files;
     var filesNames = [];
 
@@ -112,10 +117,6 @@
       });
 
       if (matches) {
-        if ((i === 0) && (filesNames.length > 0)) {
-          adPhotoPreviewsList.querySelector('.ad-form__photo').remove();
-        }
-
         fragment.appendChild(generatePreview(files[i]));
       }
     }
