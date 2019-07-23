@@ -73,13 +73,17 @@
     }
 
     ads.forEach(function (ad) {
+      var count = 0;
       checkedFeatures.forEach(function (checkedFeature) {
-        if (ad.offer.features.some(function (feature) {
-          return feature === checkedFeature.value;
-        })) {
-          filteredAds.push(ad);
-        }
+        ad.offer.features.forEach(function (feature) {
+          if (feature === checkedFeature.value) {
+            count++;
+          }
+        })
       });
+      if (count === checkedFeatures.length) {
+        filteredAds.push(ad);
+      }
     });
 
     return filteredAds;
