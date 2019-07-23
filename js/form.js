@@ -134,7 +134,7 @@
 
   adForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    var formData = new FormData();
+    var formData = new FormData(adForm);
     window.data.save(formData, window.modal.successHandler, window.modal.errorHandler);
   });
 
