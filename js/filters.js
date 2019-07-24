@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var BREAK_CODE = -1;
+
   var initialAds = [];
 
   var filterByType = document.querySelector('#housing-type');
@@ -73,21 +75,19 @@
     }
 
     ads.forEach(function (ad) {
-      var count = 0;
-      checkedFeatures.forEach(function (checkedFeature) {
-        ad.offer.features.forEach(function (feature) {
-          if (feature === checkedFeature.value) {
-            count++;
-          }
-        })
-      });
-      if (count === checkedFeatures.length) {
+      var i;
+      for (i = 0; i < checkedFeatures.length; i++) {
+        if (ad.offer.features.indexOf(checkedFeatures[i].value) === -1) {
+          i = BREAK_CODE;
+          break;
+        }
+      }
+      if (i !== BREAK_CODE) {
         filteredAds.push(ad);
       }
     });
 
     return filteredAds;
-
   };
 
   var updatePins = function () {
