@@ -13,7 +13,7 @@
   var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
   var onPinClick = function (ad) {
-    window.showCard(ad);
+    window.map.showCard(ad);
   };
 
   var renderPin = function (ad) {

@@ -20,6 +20,11 @@
     },
     deactivate: function () {
       isActive = false;
+
+      window.card.remove();
+      window.pins.remove();
+      window.map.resetMainPin();
+      window.form.disableForms();
     }
   };
 })();

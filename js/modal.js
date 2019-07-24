@@ -32,6 +32,8 @@
       mainSection.appendChild(fragment);
     },
     successHandler: function () {
+      window.page.deactivate();
+
       var fragment = document.createDocumentFragment();
 
       var successPopup = drawPopup(successTemplate, mainSection);
