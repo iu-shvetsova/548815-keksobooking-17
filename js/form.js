@@ -8,7 +8,7 @@
 
   var adForm = document.querySelector('.ad-form');
   var adFormFields = adForm.querySelectorAll('fieldset');
-  var adTitleField = adForm.querySelector('#title')
+  var adTitleField = adForm.querySelector('#title');
   var adAddressField = adForm.querySelector('#address');
   var adTypeField = adForm.querySelector('#type');
   var adPriceField = adForm.querySelector('#price');
@@ -17,12 +17,11 @@
   var adRoomsField = adForm.querySelector('#room_number');
   var adCapacityField = adForm.querySelector('#capacity');
   var adDescriptionField = adForm.querySelector('#description');
-  var adFormFeatures = adForm.querySelectorAll('.feature__checkbox')
+  var adFormFeatures = adForm.querySelectorAll('.feature__checkbox');
   var adPhotosChooser = adForm.querySelector('.ad-form__upload input[type=file]');
   var adPhotoPreviewsList = adForm.querySelector('.ad-form__photo-container');
 
   var submitButton = adForm.querySelector('.ad-form__submit');
-  // var resetButton = adForm.querySelector('.ad-form__reset');
 
   var map = document.querySelector('.map');
   var mainPin = map.querySelector('.map__pin--main');
@@ -170,7 +169,7 @@
         var emptyPreview = document.createElement('div');
         emptyPreview.classList.add('ad-form__photo');
         adPhotoPreviewsList.appendChild(emptyPreview);
-      };
+      }
 
       adFormFeatures.forEach(function (feature) {
         feature.checked = false;

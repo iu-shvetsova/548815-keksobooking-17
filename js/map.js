@@ -67,5 +67,5 @@
       mainPin.style.top = '375px';
       mainPin.style.left = '570px';
     }
-  }
+  };
 })();
