@@ -150,6 +150,8 @@
       map.classList.add('map--faded');
       adForm.classList.add('ad-form--disabled');
 
+      adForm.querySelector('.ad-form-header__preview img').src = 'img/muffin-grey.svg';
+
       adTitleField.value = '';
       adDescriptionField.value = '';
 
