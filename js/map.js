@@ -57,9 +57,15 @@
     document.addEventListener('mouseup', onMouseUp);
   });
 
-  window.showCard = function (ad) {
-    var card = window.card.render(ad);
-    window.card.remove();
-    map.appendChild(card);
+  window.map = {
+    showCard: function (ad) {
+      var card = window.card.render(ad);
+      window.card.remove();
+      map.appendChild(card);
+    },
+    resetMainPin: function () {
+      mainPin.style.top = '375px';
+      mainPin.style.left = '570px';
+    }
   };
 })();

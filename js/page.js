@@ -16,10 +16,15 @@
       isActive = true;
 
       window.form.enableForms();
-      window.load(successHandler, window.errorHandler);
+      window.data.load(successHandler, window.modal.errorHandler);
     },
     deactivate: function () {
       isActive = false;
+
+      window.card.remove();
+      window.pins.remove();
+      window.map.resetMainPin();
+      window.form.disableForms();
     }
   };
 })();

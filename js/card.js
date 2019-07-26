@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var ESC_KEYCODE = 27;
-
   var similarCardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
   var getType = function (type) {
@@ -48,6 +46,10 @@
     window.card.remove();
   };
 
+  var onCardEscPress = function (evt) {
+    window.util.isEscEvent(evt, window.card.remove);
+  };
+
   window.card = {
     render: function (ad) {
       var fragment = document.createDocumentFragment();
@@ -66,12 +68,7 @@
       setPhotos(card.querySelector('.popup__photos'), card.querySelector('.popup__photos .popup__photo'), ad.offer.photos);
 
       card.querySelector('.popup__close').addEventListener('click', onCardClose);
-
-      document.addEventListener('keydown', function (evt) {
-        if (evt.keyCode === ESC_KEYCODE) {
-          card.remove();
-        }
-      });
+      document.addEventListener('keydown', onCardEscPress);
 
       fragment.appendChild(card);
 
