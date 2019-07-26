@@ -12,11 +12,6 @@
         action();
       }
     },
-    isEnterEvent: function (evt, action) {
-      if (evt.keyCode === ENTER_KEYCODE) {
-        action();
-      }
-    },
     debounce: function (cb) {
       var lastTimeout = null;
 
