@@ -15,7 +15,7 @@
 
       isActive = true;
 
-      window.form.enableForms();
+      window.forms.enable();
       window.data.load(successHandler, window.modal.errorHandler);
     },
     deactivate: function () {
@@ -24,7 +24,7 @@
       window.card.remove();
       window.pins.remove();
       window.map.resetMainPin();
-      window.form.disableForms();
+      window.forms.disable();
     }
   };
 })();
