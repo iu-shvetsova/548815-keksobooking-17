@@ -5,11 +5,13 @@
 
   var initialAds = [];
 
-  var filterByType = document.querySelector('#housing-type');
-  var filterByPrice = document.querySelector('#housing-price');
-  var filterByRooms = document.querySelector('#housing-rooms');
-  var filterByGuests = document.querySelector('#housing-guests');
-  var filterByFeatures = document.querySelector('#housing-features');
+  var filter = document.querySelector('.map__filters');
+
+  var filterByType = filter.querySelector('#housing-type');
+  var filterByPrice = filter.querySelector('#housing-price');
+  var filterByRooms = filter.querySelector('#housing-rooms');
+  var filterByGuests = filter.querySelector('#housing-guests');
+  var filterByFeatures = filter.querySelector('#housing-features');
 
   var features = filterByFeatures.querySelectorAll('.map__checkbox');
 
@@ -112,13 +114,7 @@
       initialAds = ads;
       window.pins.draw(initialAds);
 
-      filterByType.addEventListener('change', onChange);
-      filterByRooms.addEventListener('change', onChange);
-      filterByGuests.addEventListener('change', onChange);
-      filterByPrice.addEventListener('change', onChange);
-      features.forEach(function (feature) {
-        feature.addEventListener('click', onChange);
-      });
+      filter.addEventListener('change', onChange);
     }
   };
 })();
