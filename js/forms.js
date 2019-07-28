@@ -138,7 +138,6 @@
       map.classList.remove('map--faded');
       adForm.classList.remove('ad-form--disabled');
 
-      window.util.enableFields(filterFormFields);
       window.util.enableFields(adFormFields);
     },
     disable: function () {
@@ -160,8 +159,7 @@
       });
 
       window.files.clear();
-
-      window.util.disableFields(filterFormFields);
+      window.filters.reset();
       window.util.disableFields(adFormFields);
     }
   };
