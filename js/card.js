@@ -43,10 +43,12 @@
   };
 
   var onCardClose = function () {
+    window.pins.deactivate();
     window.card.remove();
   };
 
   var onCardEscPress = function (evt) {
+    window.pins.deactivate();
     window.util.isEscEvent(evt, window.card.remove);
   };
 

@@ -12,7 +12,16 @@
 
   var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
-  var onPinClick = function (ad) {
+  var deactivatePins = function () {
+    var activePins = map.querySelectorAll('.map__pin--active');
+    activePins.forEach(function (activePin) {
+      activePin.classList.remove('map__pin--active');
+    });
+  };
+
+  var onPinClick = function (pin, ad) {
+    deactivatePins();
+    pin.classList.add('map__pin--active');
     window.map.showCard(ad);
   };
 
@@ -26,7 +35,7 @@
     pin.querySelector('img').alt = ad.offer.type;
 
     pin.addEventListener('click', function () {
-      onPinClick(ad);
+      onPinClick(pin, ad);
     });
 
     return pin;
@@ -54,6 +63,7 @@
 
   window.pins = {
     draw: drawPins,
-    remove: removePins
+    remove: removePins,
+    deactivate: deactivatePins
   };
 })();

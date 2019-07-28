@@ -130,11 +130,11 @@
     window.page.deactivate();
   });
 
-  window.form = {
+  window.forms = {
     setAddress: function (x, y) {
       adAddressField.value = x + ', ' + y;
     },
-    enableForms: function () {
+    enable: function () {
       map.classList.remove('map--faded');
       adForm.classList.remove('ad-form--disabled');
 
@@ -146,9 +146,11 @@
         field.disabled = false;
       });
     },
-    disableForms: function () {
+    disable: function () {
       map.classList.add('map--faded');
       adForm.classList.add('ad-form--disabled');
+
+      adForm.querySelector('.ad-form-header__preview img').src = 'img/muffin-grey.svg';
 
       adTitleField.value = '';
       adDescriptionField.value = '';
@@ -185,5 +187,5 @@
     }
   };
 
-  window.form.disableForms();
+  window.forms.disable();
 })();
