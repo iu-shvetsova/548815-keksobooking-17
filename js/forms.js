@@ -18,8 +18,8 @@
   var adCapacityField = adForm.querySelector('#capacity');
   var adDescriptionField = adForm.querySelector('#description');
   var adFormFeatures = adForm.querySelectorAll('.feature__checkbox');
-  var adPhotosChooser = adForm.querySelector('.ad-form__upload input[type=file]');
-  var adPhotoPreviewsList = adForm.querySelector('.ad-form__photo-container');
+  // var adPhotosChooser = adForm.querySelector('.ad-form__upload input[type=file]');
+  // var adPhotoPreviewsList = adForm.querySelector('.ad-form__photo-container');
 
   var submitButton = adForm.querySelector('.ad-form__submit');
 
@@ -53,22 +53,22 @@
     return 0;
   };
 
-  var generatePreview = function (file) {
-    var reader = new FileReader();
+  // var generatePreview = function (file) {
+  //   var reader = new FileReader();
 
-    var preview = document.createElement('div');
-    preview.classList.add('ad-form__photo');
-    preview.classList.add('ad-form__photo--added');
-    preview.style.backgroundSize = 'cover';
+  //   var preview = document.createElement('div');
+  //   preview.classList.add('ad-form__photo');
+  //   preview.classList.add('ad-form__photo--added');
+  //   preview.style.backgroundSize = 'cover';
 
-    reader.addEventListener('load', function () {
-      preview.style.backgroundImage = 'url(' + reader.result + ')';
-    });
+  //   reader.addEventListener('load', function () {
+  //     preview.style.backgroundImage = 'url(' + reader.result + ')';
+  //   });
 
-    reader.readAsDataURL(file);
+  //   reader.readAsDataURL(file);
 
-    return preview;
-  };
+  //   return preview;
+  // };
 
   adTypeField.addEventListener('change', function () {
     var minPrice = setPrice(adTypeField.value);
@@ -86,30 +86,30 @@
     adTimeInField.value = time;
   });
 
-  adPhotosChooser.addEventListener('change', function () {
-    if (!adPhotoPreviewsList.querySelector('.ad-form__photo--added')) {
-      adPhotoPreviewsList.querySelector('.ad-form__photo').remove();
-    }
+  // adPhotosChooser.addEventListener('change', function () {
+  //   if (!adPhotoPreviewsList.querySelector('.ad-form__photo--added')) {
+  //     adPhotoPreviewsList.querySelector('.ad-form__photo').remove();
+  //   }
 
-    var files = adPhotosChooser.files;
-    var filesNames = [];
+  //   var files = adPhotosChooser.files;
+  //   var filesNames = [];
 
-    var fragment = document.createDocumentFragment();
+  //   var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < files.length; i++) {
-      filesNames[i] = files[i].name.toLowerCase();
+  //   for (var i = 0; i < files.length; i++) {
+  //     filesNames[i] = files[i].name.toLowerCase();
 
-      var matches = FILE_TYPES.some(function (it) {
-        return filesNames[i].endsWith(it);
-      });
+  //     var matches = FILE_TYPES.some(function (it) {
+  //       return filesNames[i].endsWith(it);
+  //     });
 
-      if (matches) {
-        fragment.appendChild(generatePreview(files[i]));
-      }
-    }
+  //     if (matches) {
+  //       fragment.appendChild(generatePreview(files[i]));
+  //     }
+  //   }
 
-    adPhotoPreviewsList.appendChild(fragment);
-  });
+  //   adPhotoPreviewsList.appendChild(fragment);
+  // });
 
   submitButton.addEventListener('click', function () {
     if (!isCapacityValid(adRoomsField.value, adCapacityField.value)) {
@@ -145,8 +145,6 @@
       map.classList.add('map--faded');
       adForm.classList.add('ad-form--disabled');
 
-      adForm.querySelector('.ad-form-header__preview img').src = 'img/muffin-grey.svg';
-
       adTitleField.value = '';
       adDescriptionField.value = '';
 
@@ -157,20 +155,11 @@
 
       adAddressField.value = Math.round((mainPin.offsetLeft + mainPin.offsetWidth / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPin.offsetHeight / 2));
 
-      var photos = adPhotoPreviewsList.querySelectorAll('.ad-form__photo--added');
-      if (photos.length > 0) {
-        photos.forEach(function (photo) {
-          photo.remove();
-        });
-
-        var emptyPreview = document.createElement('div');
-        emptyPreview.classList.add('ad-form__photo');
-        adPhotoPreviewsList.appendChild(emptyPreview);
-      }
-
       adFormFeatures.forEach(function (feature) {
         feature.checked = false;
       });
+
+      window.files.clear();
 
       window.util.disableFields(filterFormFields);
       window.util.disableFields(adFormFields);
