@@ -138,13 +138,8 @@
       map.classList.remove('map--faded');
       adForm.classList.remove('ad-form--disabled');
 
-      filterFormFields.forEach(function (field) {
-        field.disabled = false;
-      });
-
-      adFormFields.forEach(function (field) {
-        field.disabled = false;
-      });
+      window.util.enableFields(filterFormFields);
+      window.util.enableFields(adFormFields);
     },
     disable: function () {
       map.classList.add('map--faded');
@@ -177,13 +172,8 @@
         feature.checked = false;
       });
 
-      filterFormFields.forEach(function (field) {
-        field.disabled = true;
-      });
-
-      adFormFields.forEach(function (field) {
-        field.disabled = true;
-      });
+      window.util.disableFields(filterFormFields);
+      window.util.disableFields(adFormFields);
     }
   };
 

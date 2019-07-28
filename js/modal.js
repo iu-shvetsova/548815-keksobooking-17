@@ -12,7 +12,7 @@
       section.removeChild(popup);
     };
     var onPopupEscPress = function (evt) {
-      window.util.isEscEvent(evt, onPopupClose);
+      window.util.onEscPress(evt, onPopupClose);
     };
 
     section.addEventListener('click', onPopupClose);

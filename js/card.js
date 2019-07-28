@@ -49,7 +49,7 @@
 
   var onCardEscPress = function (evt) {
     window.pins.deactivate();
-    window.util.isEscEvent(evt, window.card.remove);
+    window.util.onEscPress(evt, window.card.remove);
   };
 
   window.card = {
