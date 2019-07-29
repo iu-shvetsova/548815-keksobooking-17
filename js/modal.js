@@ -9,10 +9,12 @@
     var popup = template.cloneNode(true);
 
     var onPopupClose = function () {
+      document.removeEventListener('keydown', onPopupEscPress);
       section.removeChild(popup);
     };
+
     var onPopupEscPress = function (evt) {
-      window.util.isEscEvent(evt, onPopupClose);
+      window.util.onEscPress(evt, onPopupClose);
     };
 
     section.addEventListener('click', onPopupClose);

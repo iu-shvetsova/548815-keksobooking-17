@@ -3,28 +3,28 @@
 (function () {
   var isActive = false;
 
-  var successHandler = function (ads) {
-    window.filters.init(ads);
+  var activatePage = function () {
+    if (isActive) {
+      return;
+    }
+
+    isActive = true;
+
+    window.form.init();
+    window.map.activate();
   };
 
+  var deactivatePage = function () {
+    isActive = false;
+
+    window.form.reset();
+    window.map.deactivate();
+  };
+
+  deactivatePage();
+
   window.page = {
-    activate: function () {
-      if (isActive) {
-        return;
-      }
-
-      isActive = true;
-
-      window.forms.enable();
-      window.data.load(successHandler, window.modal.errorHandler);
-    },
-    deactivate: function () {
-      isActive = false;
-
-      window.card.remove();
-      window.pins.remove();
-      window.map.resetMainPin();
-      window.forms.disable();
-    }
+    activate: activatePage,
+    deactivate: deactivatePage
   };
 })();
