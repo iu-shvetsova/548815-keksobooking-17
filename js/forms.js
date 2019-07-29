@@ -1,11 +1,6 @@
 'use strict';
 
 (function () {
-  var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
-
-  var filterForm = document.querySelector('.map__filters');
-  var filterFormFields = filterForm.querySelectorAll('fieldset, select');
-
   var adForm = document.querySelector('.ad-form');
   var adFormFields = adForm.querySelectorAll('fieldset');
   var adTitleField = adForm.querySelector('#title');
@@ -18,13 +13,10 @@
   var adCapacityField = adForm.querySelector('#capacity');
   var adDescriptionField = adForm.querySelector('#description');
   var adFormFeatures = adForm.querySelectorAll('.feature__checkbox');
-  // var adPhotosChooser = adForm.querySelector('.ad-form__upload input[type=file]');
-  // var adPhotoPreviewsList = adForm.querySelector('.ad-form__photo-container');
 
   var submitButton = adForm.querySelector('.ad-form__submit');
 
   var map = document.querySelector('.map');
-  var mainPin = map.querySelector('.map__pin--main');
 
   var roomsToGuests = {
     '1': ['1'],
@@ -53,23 +45,6 @@
     return 0;
   };
 
-  // var generatePreview = function (file) {
-  //   var reader = new FileReader();
-
-  //   var preview = document.createElement('div');
-  //   preview.classList.add('ad-form__photo');
-  //   preview.classList.add('ad-form__photo--added');
-  //   preview.style.backgroundSize = 'cover';
-
-  //   reader.addEventListener('load', function () {
-  //     preview.style.backgroundImage = 'url(' + reader.result + ')';
-  //   });
-
-  //   reader.readAsDataURL(file);
-
-  //   return preview;
-  // };
-
   adTypeField.addEventListener('change', function () {
     var minPrice = setPrice(adTypeField.value);
     adPriceField.placeholder = minPrice;
@@ -85,31 +60,6 @@
     var time = adTimeOutField.value;
     adTimeInField.value = time;
   });
-
-  // adPhotosChooser.addEventListener('change', function () {
-  //   if (!adPhotoPreviewsList.querySelector('.ad-form__photo--added')) {
-  //     adPhotoPreviewsList.querySelector('.ad-form__photo').remove();
-  //   }
-
-  //   var files = adPhotosChooser.files;
-  //   var filesNames = [];
-
-  //   var fragment = document.createDocumentFragment();
-
-  //   for (var i = 0; i < files.length; i++) {
-  //     filesNames[i] = files[i].name.toLowerCase();
-
-  //     var matches = FILE_TYPES.some(function (it) {
-  //       return filesNames[i].endsWith(it);
-  //     });
-
-  //     if (matches) {
-  //       fragment.appendChild(generatePreview(files[i]));
-  //     }
-  //   }
-
-  //   adPhotoPreviewsList.appendChild(fragment);
-  // });
 
   submitButton.addEventListener('click', function () {
     if (!isCapacityValid(adRoomsField.value, adCapacityField.value)) {
@@ -127,6 +77,8 @@
 
   adForm.addEventListener('reset', function (evt) {
     evt.preventDefault();
+    window.pin.reset();
+    window.map.deactivate();
     window.page.deactivate();
   });
 
@@ -135,13 +87,11 @@
       adAddressField.value = x + ', ' + y;
     },
     enable: function () {
-      map.classList.remove('map--faded');
       adForm.classList.remove('ad-form--disabled');
 
       window.util.enableFields(adFormFields);
     },
     disable: function () {
-      map.classList.add('map--faded');
       adForm.classList.add('ad-form--disabled');
 
       adTitleField.value = '';
@@ -152,17 +102,11 @@
       adPriceField.placeholder = minPrice;
       adPriceField.min = minPrice;
 
-      adAddressField.value = Math.round((mainPin.offsetLeft + mainPin.offsetWidth / 2)) + ', ' + Math.round((mainPin.offsetTop + mainPin.offsetHeight / 2));
-
       adFormFeatures.forEach(function (feature) {
         feature.checked = false;
       });
 
-      window.files.clear();
-      window.filters.reset();
       window.util.disableFields(adFormFields);
     }
   };
-
-  window.forms.disable();
 })();

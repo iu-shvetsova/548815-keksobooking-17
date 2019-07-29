@@ -89,5 +89,5 @@
 
   window.files = {
     clear: clear
-  }
+  };
 })();

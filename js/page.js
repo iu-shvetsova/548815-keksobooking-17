@@ -3,10 +3,6 @@
 (function () {
   var isActive = false;
 
-  var successHandler = function (ads) {
-    window.filters.init(ads);
-  };
-
   window.page = {
     activate: function () {
       if (isActive) {
@@ -15,16 +11,17 @@
 
       isActive = true;
 
+      window.map.activate();
       window.forms.enable();
-      window.data.load(successHandler, window.modal.errorHandler);
     },
     deactivate: function () {
       isActive = false;
 
-      window.card.remove();
-      window.pins.remove();
-      window.map.resetMainPin();
+      window.files.clear();
       window.forms.disable();
+      // window.map.deactivate();
     }
   };
+
+  page.deactivate();
 })();
