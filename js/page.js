@@ -12,14 +12,13 @@
       isActive = true;
 
       window.map.activate();
-      window.forms.enable();
+      window.form.init();
     },
     deactivate: function () {
       isActive = false;
 
-      window.files.clear();
-      window.forms.disable();
-      // window.map.deactivate();
+      // window.files.clear();
+      window.form.reset();
     }
   };
 

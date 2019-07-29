@@ -22,11 +22,11 @@
   };
 
   var setAddressValue = function () {
-    window.forms.setAddress(Math.round(mainPin.offsetLeft + mainPinParams.WIDTH / 2), Math.round(mainPin.offsetTop + mainPinParams.HEIGHT));
+    window.form.setAddress(mainPin.offsetLeft + mainPinParams.WIDTH / 2, mainPin.offsetTop + mainPinParams.HEIGHT);
   };
 
   var setInitialAddressValue = function () {
-    window.forms.setAddress(Math.round(initialCoords.x + mainPinParams.WIDTH / 2), Math.round(initialCoords.y + mainPinParams.START_HEIGHT / 2));
+    window.form.setAddress(initialCoords.x + mainPinParams.WIDTH / 2, initialCoords.y + mainPinParams.START_HEIGHT / 2);
   };
 
   mainPin.addEventListener('mousedown', function (evt) {
