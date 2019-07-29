@@ -64,10 +64,6 @@
   var resetForm = function () {
     adForm.reset();
 
-    var minPrice = setPrice(adTypeField.value);
-    adPriceField.placeholder = minPrice;
-    adPriceField.min = minPrice;
-
     window.files.clear();
     disableForm();
   };
