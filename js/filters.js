@@ -93,21 +93,25 @@
     updatePins();
   });
 
+  var initFilters = function (ads) {
+    window.util.enableFields(filtersFormSelects);
+    window.util.enableFields(filtersFormInputs);
+
+    initialAds = ads;
+    window.pins.draw(initialAds);
+
+    filter.addEventListener('change', onChange);
+  };
+
+  var resetFilters = function () {
+    window.util.disableFields(filtersFormSelects);
+    window.util.disableFields(filtersFormInputs);
+
+    filter.removeEventListener('change', onChange);
+  };
+
   window.filters = {
-    init: function (ads) {
-      window.util.enableFields(filtersFormSelects);
-      window.util.enableFields(filtersFormInputs);
-
-      initialAds = ads;
-      window.pins.draw(initialAds);
-
-      filter.addEventListener('change', onChange);
-    },
-    reset: function () {
-      window.util.disableFields(filtersFormSelects);
-      window.util.disableFields(filtersFormInputs);
-
-      filter.removeEventListener('change', onChange);
-    }
+    init: initFilters,
+    reset: resetFilters
   };
 })();

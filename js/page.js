@@ -17,7 +17,6 @@
     deactivate: function () {
       isActive = false;
 
-      // window.files.clear();
       window.form.reset();
     }
   };

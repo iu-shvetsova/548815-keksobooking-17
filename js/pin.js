@@ -29,6 +29,13 @@
     window.form.setAddress(initialCoords.x + mainPinParams.WIDTH / 2, initialCoords.y + mainPinParams.START_HEIGHT / 2);
   };
 
+  var resetPin = function () {
+    mainPin.style.left = initialCoords.x + 'px';
+    mainPin.style.top = initialCoords.y + 'px';
+
+    setInitialAddressValue();
+  };
+
   mainPin.addEventListener('mousedown', function (evt) {
     var startCoords = {
       x: evt.clientX,
@@ -73,12 +80,7 @@
   });
 
   window.pin = {
-    reset: function () {
-      mainPin.style.left = initialCoords.x + 'px';
-      mainPin.style.top = initialCoords.y + 'px';
-
-      setInitialAddressValue();
-    }
+    reset: resetPin
   };
 
   setInitialAddressValue();
