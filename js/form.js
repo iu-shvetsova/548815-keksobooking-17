@@ -98,8 +98,6 @@
 
   resetButton.addEventListener('click', function (evt) {
     evt.preventDefault();
-    window.pin.reset();
-    window.map.deactivate();
     window.page.deactivate();
   });
 

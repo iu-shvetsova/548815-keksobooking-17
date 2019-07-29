@@ -82,6 +82,4 @@
   window.pin = {
     reset: resetPin
   };
-
-  setInitialAddressValue();
 })();

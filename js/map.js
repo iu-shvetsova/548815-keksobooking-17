@@ -19,6 +19,7 @@
     window.filters.reset();
     window.pins.remove();
     window.card.remove();
+    window.pin.reset();
   };
 
   var showCard = function (ad) {
