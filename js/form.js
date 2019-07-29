@@ -14,8 +14,6 @@
   var submitButton = adForm.querySelector('.ad-form__submit');
   var resetButton = adForm.querySelector('.ad-form__reset');
 
-  var map = document.querySelector('.map');
-
   var roomsToGuests = {
     '1': ['1'],
     '2': ['1', '2'],

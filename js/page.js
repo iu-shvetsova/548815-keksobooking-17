@@ -21,5 +21,5 @@
     }
   };
 
-  page.deactivate();
+  window.page.deactivate();
 })();
