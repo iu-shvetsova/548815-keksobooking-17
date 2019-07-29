@@ -79,6 +79,7 @@
   var removeCard = function () {
     var card = document.querySelector('.map__card');
     if (card) {
+      document.removeEventListener('keydown', onCardEscPress);
       card.remove();
     }
   };
