@@ -27,12 +27,13 @@
 
   var renderPin = function (ad) {
     var pin = similarPinTemplate.cloneNode(true);
+    var photo = pin.querySelector('img');
 
     pin.classList.add('similar-ad');
     pin.style.left = (ad.location.x - pinParam.WIDTH / 2) + 'px';
     pin.style.top = (ad.location.y - pinParam.HEIGHT) + 'px';
-    pin.querySelector('img').src = ad.author.avatar;
-    pin.querySelector('img').alt = ad.offer.type;
+    photo.src = ad.author.avatar;
+    photo.alt = ad.offer.type;
 
     pin.addEventListener('click', function () {
       onPinClick(pin, ad);

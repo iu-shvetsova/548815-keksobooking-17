@@ -30,12 +30,13 @@
     section.appendChild(fragment);
   };
 
-  var setPhotos = function (section, item, photos) {
-    section.removeChild(item);
+  var setPhotos = function (section, photos) {
+    var template = section.querySelector('.popup__photo');
+    section.removeChild(template);
 
     var fragment = document.createDocumentFragment();
     photos.forEach(function (photo) {
-      var currentPhoto = item.cloneNode(true);
+      var currentPhoto = template.cloneNode(true);
       currentPhoto.src = photo;
       fragment.appendChild(currentPhoto);
     });
@@ -65,7 +66,7 @@
     card.querySelector('.popup__description').textContent = ad.offer.description;
 
     setFeatures(card.querySelector('.popup__features'), ad.offer.features);
-    setPhotos(card.querySelector('.popup__photos'), card.querySelector('.popup__photos .popup__photo'), ad.offer.photos);
+    setPhotos(card.querySelector('.popup__photos'), ad.offer.photos);
 
     card.querySelector('.popup__close').addEventListener('click', onCardClose);
     document.addEventListener('keydown', onCardEscPress);
