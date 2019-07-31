@@ -17,6 +17,11 @@
 
   var features = featuresFilter.querySelectorAll('.map__checkbox');
 
+  var Prices = {
+    LOW: 10000,
+    HIGH: 50000
+  };
+
   var filterByValue = function (value, name, ads) {
     if (value === 'any') {
       return ads;
@@ -32,15 +37,15 @@
         return ads;
       case 'low':
         return ads.filter(function (ad) {
-          return ad.offer.price <= 10000;
+          return ad.offer.price <= Prices.LOW;
         });
       case 'middle':
         return ads.filter(function (ad) {
-          return (ad.offer.price > 10000) && (ad.offer.price <= 50000);
+          return (ad.offer.price > Prices.LOW) && (ad.offer.price <= Prices.HIGH);
         });
       case 'high':
         return ads.filter(function (ad) {
-          return ad.offer.price > 50000;
+          return ad.offer.price > Prices.HIGH;
         });
     }
     return null;

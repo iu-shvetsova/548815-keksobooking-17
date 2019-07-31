@@ -21,6 +21,13 @@
     '100': ['0']
   };
 
+  var HousingPrices = {
+    BUNGALO: 0,
+    FLAT: 1000,
+    HOUSE: 5000,
+    PALACE: 10000
+  };
+
   var isCapacityValid = function (rooms, capacity) {
     return roomsToGuests[rooms].some(function (value) {
       return value === capacity;
@@ -30,13 +37,13 @@
   var setPrice = function (type) {
     switch (type) {
       case 'bungalo':
-        return 0;
+        return HousingPrices.BUNGALO;
       case 'flat':
-        return 1000;
+        return HousingPrices.FLAT;
       case 'house':
-        return 5000;
+        return HousingPrices.HOUSE;
       case 'palace':
-        return 10000;
+        return HousingPrices.PALACE;
     }
     return 0;
   };
