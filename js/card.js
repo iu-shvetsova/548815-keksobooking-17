@@ -53,7 +53,6 @@
   };
 
   var renderCard = function (ad) {
-    var fragment = document.createDocumentFragment();
     var card = similarCardTemplate.cloneNode(true);
 
     card.querySelector('.popup__avatar').src = ad.author.avatar;
@@ -71,9 +70,7 @@
     card.querySelector('.popup__close').addEventListener('click', onCardClose);
     document.addEventListener('keydown', onCardEscPress);
 
-    fragment.appendChild(card);
-
-    return fragment;
+    return card;
   };
 
   var removeCard = function () {

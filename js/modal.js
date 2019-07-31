@@ -25,23 +25,17 @@
 
   window.modal = {
     errorHandler: function (errorMessage) {
-      var fragment = document.createDocumentFragment();
-
       var errorPopup = drawPopup(errorTemplate, mainSection);
       errorPopup.querySelector('.error__message').textContent = errorMessage;
 
-      fragment.appendChild(errorPopup);
-      mainSection.appendChild(fragment);
+      mainSection.appendChild(errorPopup);
     },
     successHandler: function () {
       window.page.deactivate();
 
-      var fragment = document.createDocumentFragment();
-
       var successPopup = drawPopup(successTemplate, mainSection);
 
-      fragment.appendChild(successPopup);
-      mainSection.appendChild(fragment);
+      mainSection.appendChild(successPopup);
     }
   };
 })();
