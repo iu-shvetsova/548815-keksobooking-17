@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var BREAK_CODE = -1;
-
   var initialAds = [];
 
   var filter = document.querySelector('.map__filters');
@@ -15,7 +13,8 @@
   var guestsFilter = filter.querySelector('#housing-guests');
   var featuresFilter = filter.querySelector('#housing-features');
 
-  var features = featuresFilter.querySelectorAll('.map__checkbox');
+  var featuresList = featuresFilter.querySelectorAll('.map__checkbox');
+  var features = Array.prototype.slice.call(featuresList);
 
   var Prices = {
     LOW: 10000,
@@ -55,10 +54,8 @@
     var checkedFeatures = [];
     var filteredAds = [];
 
-    features.forEach(function (feature) {
-      if (feature.checked) {
-        checkedFeatures.push(feature);
-      }
+    checkedFeatures = features.filter(function (feature) {
+      return feature.checked;
     });
 
     if (checkedFeatures.length === 0) {
@@ -69,13 +66,10 @@
       var i;
       for (i = 0; i < checkedFeatures.length; i++) {
         if (ad.offer.features.indexOf(checkedFeatures[i].value) === -1) {
-          i = BREAK_CODE;
-          break;
+          return;
         }
       }
-      if (i !== BREAK_CODE) {
-        filteredAds.push(ad);
-      }
+      filteredAds.push(ad);
     });
 
     return filteredAds;
